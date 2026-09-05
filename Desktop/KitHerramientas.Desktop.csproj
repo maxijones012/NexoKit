@@ -7,6 +7,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <AssemblyName>KitHerramientas</AssemblyName>
     <RootNamespace>KitHerramientas.Desktop</RootNamespace>
-    <Version>0.9.0</Version>
+    <Version>1.0.0</Version>
   </PropertyGroup>
 </Project>
