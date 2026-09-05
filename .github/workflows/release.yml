@@ -2,14 +2,146 @@ name: Build y Release NexoKit R10
 
 on:
   workflow_dispatch:
+  push:
+    branches: [ master ]
+    paths:
+      - 'Desktop/**'
+      - 'Android/**'
+      - 'version.json'
+      - '.github/workflows/release.yml'
 
 permissions:
   contents: write
 
 jobs:
-  notice:
-    name: Preparación R10
+  desktop:
+    name: Desktop Windows x64
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Publicar Desktop self-contained
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          dotnet restore Desktop/KitHerramientas.Desktop.csproj
+          dotnet publish Desktop/KitHerramientas.Desktop.csproj `
+            -c Release `
+            -r win-x64 `
+            --self-contained true `
+            -p:PublishSingleFile=true `
+            -p:IncludeNativeLibrariesForSelfExtract=true `
+            -o out/desktop
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          New-Item -ItemType Directory -Force -Path artifacts | Out-Null
+          Copy-Item out/desktop/KitHerramientas.exe artifacts/NexoKit_Desktop_1.0.0_R10.exe
+
+      - name: Subir artifact Desktop
+        uses: actions/upload-artifact@v4
+        with:
+          name: NexoKit-Desktop-R10
+          path: artifacts/NexoKit_Desktop_1.0.0_R10.exe
+          if-no-files-found: error
+
+  android:
+    name: Android APK
     runs-on: ubuntu-latest
     steps:
-      - name: Aviso
-        run: echo "Workflow temporal durante la integración R10."
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Java 17
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Configurar Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Instalar Android API 36
+        shell: bash
+        run: |
+          yes | sdkmanager --licenses >/dev/null || true
+          sdkmanager 'platform-tools' 'platforms;android-36'
+
+      - name: Configurar Gradle 9.3.1
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '9.3.1'
+
+      - name: Compilar APK instalable
+        shell: bash
+        run: |
+          set -euo pipefail
+          gradle -p Android :app:assembleDebug --no-daemon
+          mkdir -p artifacts
+          cp Android/app/build/outputs/apk/debug/app-debug.apk artifacts/NexoKit_Android_1.0.0_R10.apk
+
+      - name: Subir artifact Android
+        uses: actions/upload-artifact@v4
+        with:
+          name: NexoKit-Android-R10
+          path: artifacts/NexoKit_Android_1.0.0_R10.apk
+          if-no-files-found: error
+
+  release:
+    name: Crear Release v1.0.0
+    runs-on: ubuntu-latest
+    needs: [desktop, android]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Descargar artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: release-assets
+          merge-multiple: true
+
+      - name: Empaquetar fuente y checksums
+        shell: bash
+        run: |
+          set -euo pipefail
+          git archive --format=zip --output release-assets/NexoKit_Source_R10.zip HEAD -- . ':(exclude).bootstrap'
+          cd release-assets
+          sha256sum NexoKit_Desktop_1.0.0_R10.exe NexoKit_Android_1.0.0_R10.apk NexoKit_Source_R10.zip > SHA256SUMS.txt
+          ls -lah
+
+      - name: Crear/actualizar GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v1.0.0
+          target_commitish: ${{ github.sha }}
+          name: NexoKit R10 · v1.0.0
+          body: |
+            NexoKit R10 — Herramientas integradas · Desktop + Android.
+
+            Novedades principales:
+            - Nueva pestaña/centro 🧰 Herramientas.
+            - Meta Scan integrado directamente en NexoKit con API key aportada por el usuario.
+            - OSINT Hub buscable basado en los catálogos de Descubrir.
+            - Los recursos del OSINT Hub se pueden abrir o mandar a Actualizaciones en modo SOLO AVISA.
+            - Acceso centralizado a Wi-Fi Sensing y referencia RuView.
+            - Actualizaciones y Descubrir siguen funcionando como mantenimiento, separados del uso de herramientas.
+
+            Archivos:
+            - NexoKit_Desktop_1.0.0_R10.exe
+            - NexoKit_Android_1.0.0_R10.apk
+            - NexoKit_Source_R10.zip
+            - SHA256SUMS.txt
+
+            El APK usa firma debug para pruebas. NexoKit no guarda la API key de Meta Scan y no ejecuta automáticamente herramientas externas descargadas.
+          make_latest: true
+          fail_on_unmatched_files: true
+          files: |
+            release-assets/NexoKit_Desktop_1.0.0_R10.exe
+            release-assets/NexoKit_Android_1.0.0_R10.apk
+            release-assets/NexoKit_Source_R10.zip
+            release-assets/SHA256SUMS.txt
