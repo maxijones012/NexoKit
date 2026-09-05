@@ -1,0 +1,8 @@
+.tools/
+**/bin/
+**/obj/
+Android/.gradle/
+Android/local.properties
+Android/app/build/
+Releases/*
+!Releases/.gitkeep
