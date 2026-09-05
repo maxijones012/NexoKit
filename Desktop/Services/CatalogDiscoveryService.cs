@@ -1,3 +1,4 @@
+using System.IO;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -165,7 +166,6 @@ public static class CatalogDiscoveryService
                 if (!firstRun) added++;
             }
         }
-        // Conservamos históricos aunque una lista deje de mencionarlos; evita perder contexto.
         source.LastCommitId = snapshot.CommitId;
         source.LastChecked = DateTimeOffset.Now;
         source.TotalCount = snapshot.Tools.Count;
