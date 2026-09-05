@@ -1,3 +1,4 @@
+using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Text.Json;
@@ -62,8 +63,6 @@ public static class RepositoryUpdateService
                 var parsed = JsonSerializer.Deserialize<List<RepositoryWatch>>(File.ReadAllText(StateFile));
                 if (parsed is { Count: > 0 })
                 {
-                    // Migración de una sola vez: agrega Meta Scan a instalaciones R9 existentes,
-                    // pero respeta una eliminación manual posterior.
                     if (!File.Exists(metaSeedFlag))
                     {
                         if (!parsed.Any(x => x.Repository.Equals("HackUnderway/meta_scan", StringComparison.OrdinalIgnoreCase)))
@@ -163,7 +162,6 @@ public static class RepositoryUpdateService
             }
         }
 
-        // Sin releases: se sigue la rama por defecto y se descarga el ZIP de código cuando cambia el commit.
         using var repoResponse = await Http.GetAsync($"https://api.github.com/repos/{normalized}", cancellationToken);
         if (!repoResponse.IsSuccessStatusCode)
         {
@@ -224,13 +222,9 @@ public static class RepositoryUpdateService
         if (assets.Count == 0) return null;
         IEnumerable<(string Name, string Url)> ordered;
         if (android)
-        {
             ordered = assets.OrderBy(a => AssetRankAndroid(a.Name));
-        }
         else
-        {
             ordered = assets.OrderBy(a => AssetRankWindows(a.Name));
-        }
         var chosen = ordered.First();
         var rank = android ? AssetRankAndroid(chosen.Name) : AssetRankWindows(chosen.Name);
         return rank >= 100 ? null : chosen;
