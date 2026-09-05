@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace = "com.max.kitherramientas"
-    compileSdk = 37
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.max.kitherramientas"
