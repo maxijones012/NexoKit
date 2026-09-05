@@ -1,90 +1,62 @@
-# NexoKit R8 — caja de herramientas Desktop + Android
+# NexoKit R9 — Descubrir + Actualizaciones
 
-Versiones: **Desktop 0.8.0 / Android 0.8.0 / R8**.
+Versiones: **Desktop 0.9.0 / Android 0.9.0 / R9**.
 
-R8 mantiene el Wi‑Fi Sensing experimental de R7 y agrega un **gestor de repositorios con actualización independiente por herramienta**.
+R9 agrega una capa nueva sobre el gestor de repositorios: **Descubrir**. La idea es separar claramente dos cosas:
 
-## Actualizaciones por repositorio
+- **Actualizaciones**: proyectos concretos que ya elegiste seguir. Cada repo tiene su intervalo y puede descargar una release/ZIP nuevo.
+- **Descubrir**: repositorios-catálogo (por ejemplo listas OSINT) que se revisan periódicamente para detectar herramientas/repo nuevos, sin descargarlos automáticamente.
 
-Cada repositorio tiene su propia configuración:
+## Fuente incluida
 
-- activo / pausado;
-- intervalo en horas (1 a 168);
-- descarga automática ON/OFF;
-- última versión detectada;
-- última revisión;
-- estado;
-- último archivo descargado.
+R9 trae como fuente inicial:
 
-La comprobación sigue este orden:
+`Astrosp/Awesome-OSINT-List`
 
-1. `releases/latest` de GitHub;
-2. si el repo no usa Releases, commit de la rama por defecto;
-3. si cambió la versión/commit, descarga el asset apropiado;
-4. si no hay asset compatible, descarga el ZIP de código fuente.
+La primera revisión crea una línea base. En revisiones posteriores, si aparecen links nuevos de GitHub en el README, se marcan como `NUEVO`.
 
-### Selección de archivo
+## Desktop · pestaña Descubrir
 
-**Desktop:** prioriza EXE/MSI/ZIP de Windows.
+- agregar/quitar fuentes catálogo;
+- intervalo independiente por fuente;
+- revisión manual o automática;
+- cantidad total de recursos y cantidad nueva;
+- categoría tomada del encabezado del README;
+- abrir el repositorio descubierto en GitHub;
+- mandar un recurso a `Actualizaciones`;
+- al agregar desde Descubrir entra en **SOLO AVISA** por seguridad;
+- `MARCAR VISTOS` limpia la bandera de novedades sin borrar el historial.
 
-**Android:** prioriza APK, luego AAB/ZIP de Android.
+## Android · Descubrir
 
-Las descargas **nunca se ejecutan ni se instalan automáticamente**. Esto evita que una actualización remota ejecute código sin revisión.
+Android incluye la misma fuente inicial y revisa catálogos junto con el trabajo programado de repositorios. La app muestra hasta 80 recursos por pantalla, priorizando los nuevos.
 
-## Comprobación periódica
+El catálogo nunca instala ni ejecuta herramientas. Para seguir un proyecto concreto, se agrega a `Actualizaciones`.
 
-### Desktop
+## Actualizaciones de repositorios
 
-- revisa al iniciar;
-- un temporizador interno mira cada 30 minutos qué repositorios ya cumplieron su intervalo individual;
-- sólo consulta los repos que están vencidos.
+Se mantiene R8:
 
-### Android
-
-- usa `JobScheduler` nativo;
-- trabajo periódico global aproximadamente cada 1 hora, sólo con red no medida;
-- dentro de ese trabajo cada repositorio respeta su propio intervalo;
-- el trabajo queda persistido tras reinicios;
-- descargas en el almacenamiento específico de la app, dentro de `NexoKitUpdates`.
-
-## Repositorios iniciales
-
-R8 viene con tres entradas editables:
-
-- `maxijones012/PruebaRepositorio` (repo temporal de NexoKit);
-- `maxijones012/FACELY-Releases`;
-- `maxijones012/IrisTrack_AI`.
-
-Se pueden agregar o quitar repositorios pegando una URL de GitHub o `owner/repo`.
-
-## Repositorios privados
-
-R8 **no guarda tokens ni claves de GitHub**. Los repositorios privados pueden aparecer como no encontrados porque requieren autenticación. Se deja autenticación segura para una revisión posterior.
+- cada repo tiene su propio intervalo;
+- detecta GitHub Releases o, si no existen, el último commit de la rama principal;
+- descarga el asset adecuado o un ZIP de código;
+- **nunca ejecuta ni instala automáticamente** lo descargado.
 
 ## Wi‑Fi Sensing
 
-Sigue el modo directo de R7:
-
-- router/AP actual;
-- RSSI en vivo;
-- calibración;
-- variación RF;
-- estados `ESTABLE / VARIACIÓN / ACTIVIDAD / MOVIMIENTO PROBABLE`;
-- ESP32/CSI sigue como hardware avanzado opcional.
-
-El sensing RSSI es experimental y no identifica ni ubica personas con precisión.
+Se conserva el modo Wi‑Fi directo basado en RSSI de R7, con calibración, actividad RF y HUD futurista. Es experimental y no equivale a una imagen ni a una localización exacta de personas.
 
 ## Compilar
 
-Ejecutá:
-
-`INICIAR.bat`
+Ejecutar `INICIAR.bat`:
 
 - `2` Compilar Desktop
 - `3` Compilar Android
 - `4` Compilar todo
 - `5` Instalar APK por USB
 
-Salida Android:
+Si ya tenés `.tools` de una versión anterior, el parche R8→R9 puede reutilizarlo.
 
-`Releases\Android\KitHerramientas_Android_0.8.0_R8.apk`
+## Uso responsable
+
+Las funciones OSINT, de red y sensing deben utilizarse únicamente con fines legales y sobre sistemas, redes, cuentas o ambientes propios o autorizados. Un catálogo puede enlazar proyectos de terceros: NexoKit no garantiza su seguridad ni los ejecuta automáticamente.
