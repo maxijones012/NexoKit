@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0E1117"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="NEXOKIT" android:textColor="#FFFFFF" android:textStyle="bold" android:textSize="27sp" />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:text="Android 0.9.0 · R9 · Wi‑Fi Sensing · repositorios auto-actualizables" android:textColor="#AAB3C2" android:textSize="14sp" />
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:orientation="vertical" android:padding="17dp" android:background="#171C25">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="MI WI‑FI / ROUTER ACTUAL" android:textStyle="bold" android:textColor="#9AA6B6" />
+            <TextView android:id="@+id/txtNetworkStatus" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="Estado: leyendo…" android:textColor="#E0B37A" android:textStyle="bold" />
+            <TextView android:id="@+id/txtSsid" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:text="SSID: —" android:textColor="#FFFFFF" android:textSize="18sp" />
+            <TextView android:id="@+id/txtBssid" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:text="BSSID: —" android:textColor="#D1D7E0" />
+            <TextView android:id="@+id/txtIp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:text="IP: —" android:textColor="#D1D7E0" />
+            <TextView android:id="@+id/txtGateway" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:text="Router / gateway: —" android:textColor="#D1D7E0" />
+            <TextView android:id="@+id/txtDns" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:text="DNS: —" android:textColor="#D1D7E0" />
+            <TextView android:id="@+id/txtRssi" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:text="RSSI: —" android:textColor="#D1D7E0" />
+            <TextView android:id="@+id/txtFrequency" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:text="Frecuencia: —" android:textColor="#D1D7E0" />
+            <TextView android:id="@+id/txtLink" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:text="Enlace: —" android:textColor="#D1D7E0" />
+            <TextView android:id="@+id/txtPing" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:text="Ping: —" android:textColor="#D1D7E0" />
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="12dp">
+            <Button android:id="@+id/btnRefresh" android:layout_width="0dp" android:layout_height="58dp" android:layout_weight="1" android:text="ACTUALIZAR" android:textColor="#FFFFFF" android:backgroundTint="#253044" />
+            <Button android:id="@+id/btnPing" android:layout_width="0dp" android:layout_height="58dp" android:layout_weight="1" android:layout_marginStart="8dp" android:text="PING" android:textColor="#FFFFFF" android:backgroundTint="#253044" />
+        </LinearLayout>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="24dp" android:text="SEÑAL EN VIVO" android:textStyle="bold" android:textColor="#9AA6B6" />
+        <TextView android:id="@+id/txtLiveValue" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="7dp" android:text="—" android:textColor="#FFFFFF" android:textStyle="bold" android:textSize="25sp" />
+        <TextView android:id="@+id/txtLiveStats" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:text="Muestras: 0 · Promedio: —" android:textColor="#AAB3C2" />
+
+        <com.max.kitherramientas.SignalGraphView
+            android:id="@+id/signalGraph"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_marginTop="10dp"
+            android:background="#121821" />
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="8dp">
+            <Button android:id="@+id/btnMonitor" android:layout_width="0dp" android:layout_height="56dp" android:layout_weight="1" android:text="INICIAR" android:textColor="#FFFFFF" android:backgroundTint="#253044" />
+            <Button android:id="@+id/btnClearHistory" android:layout_width="0dp" android:layout_height="56dp" android:layout_weight="1" android:layout_marginStart="8dp" android:text="LIMPIAR" android:textColor="#FFFFFF" android:backgroundTint="#1D2633" />
+        </LinearLayout>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="28dp" android:text="LABORATORIO RSSI · EXPERIMENTAL" android:textStyle="bold" android:textColor="#9AA6B6" />
+        <TextView android:id="@+id/txtLabStatus" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="7dp" android:text="Calibrá el ambiente antes de iniciar una sesión." android:textColor="#D5DCE6" android:textStyle="bold" />
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:orientation="vertical" android:padding="15dp" android:background="#151A22">
+            <TextView android:id="@+id/txtLabBaseline" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Línea base: —" android:textColor="#AAB3C2" />
+            <TextView android:id="@+id/txtLabCurrent" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="—" android:textColor="#FFFFFF" android:textSize="21sp" android:textStyle="bold" />
+            <TextView android:id="@+id/txtLabDetails" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:text="Δ: — · puntaje: —" android:textColor="#AAB3C2" />
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="9dp">
+            <Button android:id="@+id/btnLabCalibrate" android:layout_width="0dp" android:layout_height="56dp" android:layout_weight="1" android:text="CALIBRAR" android:textColor="#FFFFFF" android:backgroundTint="#253044" />
+            <Button android:id="@+id/btnLabRun" android:layout_width="0dp" android:layout_height="56dp" android:layout_weight="1" android:layout_marginStart="8dp" android:text="INICIAR SESIÓN" android:textColor="#FFFFFF" android:backgroundTint="#253044" />
+        </LinearLayout>
+
+        <Button android:id="@+id/btnSensitivity" android:layout_width="match_parent" android:layout_height="52dp" android:layout_marginTop="8dp" android:text="SENSIBILIDAD: NORMAL" android:textColor="#FFFFFF" android:backgroundTint="#1D2633" />
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="15dp" android:text="MARCADORES MANUALES" android:textStyle="bold" android:textColor="#8491A3" />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="7dp">
+            <Button android:id="@+id/btnMarkerEmpty" android:layout_width="0dp" android:layout_height="52dp" android:layout_weight="1" android:text="VACÍA" android:textColor="#FFFFFF" android:backgroundTint="#1D2633" />
+            <Button android:id="@+id/btnMarkerEntry" android:layout_width="0dp" android:layout_height="52dp" android:layout_weight="1" android:layout_marginStart="7dp" android:text="INGRESO" android:textColor="#FFFFFF" android:backgroundTint="#1D2633" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="7dp">
+            <Button android:id="@+id/btnMarkerMove" android:layout_width="0dp" android:layout_height="52dp" android:layout_weight="1" android:text="MOVIMIENTO" android:textColor="#FFFFFF" android:backgroundTint="#1D2633" />
+            <Button android:id="@+id/btnMarkerExit" android:layout_width="0dp" android:layout_height="52dp" android:layout_weight="1" android:layout_marginStart="7dp" android:text="SALIDA" android:textColor="#FFFFFF" android:backgroundTint="#1D2633" />
+        </LinearLayout>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="15dp" android:text="ÚLTIMOS REGISTROS" android:textStyle="bold" android:textColor="#8491A3" />
+        <TextView android:id="@+id/txtLabRecent" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="7dp" android:padding="12dp" android:background="#151A22" android:text="—" android:textColor="#D5DCE6" android:textIsSelectable="true" />
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="8dp">
+            <Button android:id="@+id/btnExportCsv" android:layout_width="0dp" android:layout_height="52dp" android:layout_weight="1" android:text="CSV" android:textColor="#FFFFFF" android:backgroundTint="#253044" />
+            <Button android:id="@+id/btnExportJson" android:layout_width="0dp" android:layout_height="52dp" android:layout_weight="1" android:layout_marginStart="7dp" android:text="JSON" android:textColor="#FFFFFF" android:backgroundTint="#253044" />
+            <Button android:id="@+id/btnLabClear" android:layout_width="0dp" android:layout_height="52dp" android:layout_weight="1" android:layout_marginStart="7dp" android:text="BORRAR" android:textColor="#FFFFFF" android:backgroundTint="#1D2633" />
+        </LinearLayout>
+        <TextView android:id="@+id/txtLabExportStatus" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:text="" android:textColor="#AAB3C2" android:textSize="12sp" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:text="La detección usa sólo variaciones RSSI: puede reaccionar a puertas, objetos, interferencias o cambios del enlace. No identifica personas ni determina una ubicación exacta." android:textColor="#E0B37A" android:textSize="12sp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:orientation="vertical"
+            android:padding="14dp"
+            android:background="#071018">
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="WI‑FI SENSING OBSERVATORY" android:textStyle="bold" android:textColor="#55FFD0" android:textSize="14sp" />
+                <TextView android:id="@+id/txtCsiModeBadge" android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingHorizontal="10dp" android:paddingVertical="4dp" android:text="WI‑FI" android:textStyle="bold" android:textColor="#53FFD0" android:background="#3B3114" />
+            </LinearLayout>
+
+            <TextView android:id="@+id/txtCsiStatus" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="7dp" android:text="WI‑FI DIRECTO · listo para calibrar con el router conectado" android:textColor="#FFFFFF" android:textSize="15sp" android:textStyle="bold" />
+            <TextView android:id="@+id/txtCsiTarget" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:text="Usa RSSI del Wi‑Fi actual · sin ESP32 obligatorio" android:textColor="#7793A4" android:textSize="12sp" />
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="10dp">
+                <Button android:id="@+id/btnCsiDemo" android:layout_width="0dp" android:layout_height="48dp" android:layout_weight="1" android:text="DEMO" android:textColor="#FFD874" android:backgroundTint="#614A13" />
+                <Button android:id="@+id/btnCsiReal" android:layout_width="0dp" android:layout_height="48dp" android:layout_weight="1" android:layout_marginStart="6dp" android:text="WI‑FI" android:textColor="#53FFD0" android:backgroundTint="#0D2A24" />
+                <Button android:id="@+id/btnCsiRun" android:layout_width="0dp" android:layout_height="48dp" android:layout_weight="1.4" android:layout_marginStart="6dp" android:text="CALIBRAR 25s" android:textColor="#FFFFFF" android:backgroundTint="#102332" />
+            </LinearLayout>
+
+            <com.max.kitherramientas.CsiSceneView
+                android:id="@+id/csiScene"
+                android:layout_width="match_parent"
+                android:layout_height="390dp"
+                android:layout_marginTop="10dp"
+                android:background="#03080E" />
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="8dp">
+                <Button android:id="@+id/btnCsiTracking" android:layout_width="0dp" android:layout_height="44dp" android:layout_weight="1" android:text="INICIAR" android:textSize="10sp" android:textColor="#56FFD1" android:backgroundTint="#0D2A24" />
+                <Button android:id="@+id/btnCsiHeat" android:layout_width="0dp" android:layout_height="44dp" android:layout_weight="1" android:layout_marginStart="5dp" android:text="HEATMAP" android:textSize="10sp" android:textColor="#56FFD1" android:backgroundTint="#0D2A24" />
+                <Button android:id="@+id/btnCsiClear" android:layout_width="0dp" android:layout_height="44dp" android:layout_weight="1" android:layout_marginStart="5dp" android:text="REINICIAR" android:textSize="10sp" android:textColor="#AFC1CC" android:backgroundTint="#101820" />
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="9dp" android:orientation="horizontal">
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:padding="10dp" android:background="#091A20">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="RSSI ACTUAL" android:textColor="#688596" android:textSize="9sp" />
+                    <TextView android:id="@+id/txtCsiHeart" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="— dBm" android:textColor="#58FFC8" android:textStyle="bold" android:textSize="19sp" />
+                </LinearLayout>
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="6dp" android:orientation="vertical" android:padding="10dp" android:background="#091A20">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="LÍNEA BASE" android:textColor="#688596" android:textSize="9sp" />
+                    <TextView android:id="@+id/txtCsiResp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="— dBm" android:textColor="#58FFC8" android:textStyle="bold" android:textSize="19sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:orientation="horizontal">
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:padding="10dp" android:background="#091A20">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="CONFIANZA RF" android:textColor="#688596" android:textSize="9sp" />
+                    <TextView android:id="@+id/txtCsiConfidence" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="82 %" android:textColor="#58FFC8" android:textStyle="bold" android:textSize="19sp" />
+                </LinearLayout>
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="6dp" android:orientation="vertical" android:padding="10dp" android:background="#091A20">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="ESTADO" android:textColor="#688596" android:textSize="9sp" />
+                    <TextView android:id="@+id/txtCsiMotion" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="SIN CALIBRAR" android:textColor="#58FFC8" android:textStyle="bold" android:textSize="17sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView android:id="@+id/txtCsiSummary" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:padding="11dp" android:background="#08131C" android:text="Enlace: 0 · Muestras: 0 · Δ RSSI: — · Score: —" android:textColor="#D5DCE6" android:textStyle="bold" android:textSize="12sp" />
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="7dp" android:padding="10dp" android:background="#08131C" android:text="CÓMO PROBAR\n1. Dejá router y teléfono fijos.\n2. CALIBRAR 25s con el ambiente quieto.\n3. INICIAR.\n4. Probá movimiento entre ambos o con una pared en medio.\n5. Compará Δ RSSI, Score y Estado." android:textColor="#A8BBC5" android:textSize="11sp" />
+            <TextView android:id="@+id/txtCsiNodes" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="80dp" android:layout_marginTop="6dp" android:padding="10dp" android:background="#061017" android:text="CSI opcional: sin sensores. El modo Wi‑Fi directo funciona sin ESP32." android:textColor="#A8BBC5" android:textIsSelectable="true" android:typeface="monospace" android:textSize="11sp" />
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:text="Wi‑Fi sensing experimental: la escena representa variaciones RSSI, no una imagen óptica ni una ubicación exacta. Paredes, puertas, interferencia, roaming y cambios del router pueden producir actividad. CSI/ESP32 queda como opción avanzada para más adelante." android:textColor="#8EA4B0" android:textSize="11sp" />
+        </LinearLayout>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="28dp" android:text="REDES CERCANAS Y CANALES" android:textStyle="bold" android:textColor="#9AA6B6" />
+        <TextView android:id="@+id/txtScanStatus" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:text="El escaneo es pasivo: lista lo que Android ya puede ver." android:textColor="#AAB3C2" android:textSize="13sp" />
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="10dp">
+            <Button android:id="@+id/btnScan" android:layout_width="0dp" android:layout_height="56dp" android:layout_weight="1" android:text="ESCANEAR WI‑FI" android:textColor="#FFFFFF" android:backgroundTint="#253044" />
+            <Button android:id="@+id/btnLocationSettings" android:layout_width="0dp" android:layout_height="56dp" android:layout_weight="1" android:layout_marginStart="8dp" android:text="ABRIR UBICACIÓN" android:textColor="#FFFFFF" android:backgroundTint="#1D2633" />
+        </LinearLayout>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:text="PUNTOS DE ACCESO" android:textStyle="bold" android:textColor="#8491A3" />
+        <TextView android:id="@+id/txtNetworks" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:padding="14dp" android:background="#151A22" android:text="—" android:textColor="#D5DCE6" android:textIsSelectable="true" />
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:text="OCUPACIÓN DE CANALES" android:textStyle="bold" android:textColor="#8491A3" />
+        <TextView android:id="@+id/txtChannels" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:padding="14dp" android:background="#151A22" android:text="—" android:textColor="#D5DCE6" android:textIsSelectable="true" />
+
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="28dp" android:text="KIT DE RED" android:textStyle="bold" android:textColor="#9AA6B6" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:text="Diagnóstico sobre tu conexión y tu segmento local. No realiza escaneo de puertos." android:textColor="#AAB3C2" android:textSize="13sp" />
+
+        <EditText android:id="@+id/txtNetTarget" android:layout_width="match_parent" android:layout_height="52dp" android:layout_marginTop="10dp" android:hint="Dominio o IP (ej. router o servidor)" android:singleLine="true" android:paddingHorizontal="12dp" android:textColor="#FFFFFF" android:textColorHint="#667386" android:backgroundTint="#334155" android:inputType="textUri" />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="8dp">
+            <Button android:id="@+id/btnNetDns" android:layout_width="0dp" android:layout_height="52dp" android:layout_weight="1" android:text="DNS" android:textColor="#FFFFFF" android:backgroundTint="#253044" />
+            <Button android:id="@+id/btnNetPing" android:layout_width="0dp" android:layout_height="52dp" android:layout_weight="1" android:layout_marginStart="7dp" android:text="PING ×10" android:textColor="#FFFFFF" android:backgroundTint="#253044" />
+            <Button android:id="@+id/btnNetTrace" android:layout_width="0dp" android:layout_height="52dp" android:layout_weight="1" android:layout_marginStart="7dp" android:text="TRAZA" android:textColor="#FFFFFF" android:backgroundTint="#253044" />
+        </LinearLayout>
+        <TextView android:id="@+id/txtNetResult" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="120dp" android:layout_marginTop="8dp" android:padding="12dp" android:background="#151A22" android:text="Ingresá un destino y elegí una prueba." android:textColor="#D5DCE6" android:textIsSelectable="true" android:typeface="monospace" />
+        <Button android:id="@+id/btnNetExport" android:layout_width="match_parent" android:layout_height="50dp" android:layout_marginTop="8dp" android:text="GUARDAR DIAGNÓSTICO TXT" android:textColor="#FFFFFF" android:backgroundTint="#1D2633" />
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="18dp" android:text="CALCULADORA IPv4 / CIDR" android:textStyle="bold" android:textColor="#8491A3" />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="7dp">
+            <EditText android:id="@+id/txtCidrIp" android:layout_width="0dp" android:layout_height="52dp" android:layout_weight="3" android:hint="192.168.1.10" android:singleLine="true" android:paddingHorizontal="10dp" android:textColor="#FFFFFF" android:textColorHint="#667386" android:backgroundTint="#334155" android:inputType="phone" />
+            <EditText android:id="@+id/txtCidrPrefix" android:layout_width="0dp" android:layout_height="52dp" android:layout_weight="1" android:layout_marginStart="7dp" android:hint="24" android:singleLine="true" android:paddingHorizontal="10dp" android:textColor="#FFFFFF" android:textColorHint="#667386" android:backgroundTint="#334155" android:inputType="number" />
+            <Button android:id="@+id/btnCidr" android:layout_width="110dp" android:layout_height="52dp" android:layout_marginStart="7dp" android:text="CALCULAR" android:textColor="#FFFFFF" android:backgroundTint="#253044" />
+        </LinearLayout>
+        <TextView android:id="@+id/txtCidrResult" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="7dp" android:padding="12dp" android:background="#151A22" android:text="Red, máscara, broadcast y rango aparecerán acá." android:textColor="#D5DCE6" android:textIsSelectable="true" />
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="18dp" android:text="EQUIPOS EN TU LAN" android:textStyle="bold" android:textColor="#8491A3" />
+        <Button android:id="@+id/btnLanScan" android:layout_width="match_parent" android:layout_height="52dp" android:layout_marginTop="7dp" android:text="ESCANEAR SEGMENTO LOCAL /24" android:textColor="#FFFFFF" android:backgroundTint="#253044" />
+        <TextView android:id="@+id/txtLanStatus" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:text="Sólo prueba presencia mediante la red local; no escanea puertos." android:textColor="#AAB3C2" android:textSize="12sp" />
+        <TextView android:id="@+id/txtLanDevices" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="7dp" android:padding="12dp" android:background="#151A22" android:text="—" android:textColor="#D5DCE6" android:textIsSelectable="true" />
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="18dp" android:text="MAC / OUI" android:textStyle="bold" android:textColor="#8491A3" />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="7dp">
+            <EditText android:id="@+id/txtMacInput" android:layout_width="0dp" android:layout_height="52dp" android:layout_weight="1" android:hint="AA:BB:CC:DD:EE:FF" android:singleLine="true" android:paddingHorizontal="10dp" android:textColor="#FFFFFF" android:textColorHint="#667386" android:backgroundTint="#334155" />
+            <Button android:id="@+id/btnMacInspect" android:layout_width="110dp" android:layout_height="52dp" android:layout_marginStart="7dp" android:text="ANALIZAR" android:textColor="#FFFFFF" android:backgroundTint="#253044" />
+        </LinearLayout>
+        <TextView android:id="@+id/txtMacResult" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="7dp" android:padding="12dp" android:background="#151A22" android:text="Extrae el OUI y avisa si parece una MAC local/aleatorizada." android:textColor="#D5DCE6" android:textIsSelectable="true" />
+
+
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="28dp" android:text="ACTUALIZACIONES DE REPOSITORIOS" android:textStyle="bold" android:textColor="#55FFD0" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:text="Cada repositorio se verifica por separado. Si detecta una release/commit nuevo y AUTO DESCARGA está activo, baja el archivo al almacenamiento de la app. Nunca lo ejecuta ni instala automáticamente." android:textColor="#AAB3C2" android:textSize="13sp" />
+
+        <EditText android:id="@+id/txtRepoInput" android:layout_width="match_parent" android:layout_height="52dp" android:layout_marginTop="10dp" android:hint="https://github.com/owner/repo o owner/repo" android:singleLine="true" android:paddingHorizontal="12dp" android:textColor="#FFFFFF" android:textColorHint="#667386" android:backgroundTint="#334155" android:inputType="textUri" />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="8dp">
+            <EditText android:id="@+id/txtRepoHours" android:layout_width="0dp" android:layout_height="52dp" android:layout_weight="1" android:hint="Horas" android:text="6" android:singleLine="true" android:paddingHorizontal="10dp" android:textColor="#FFFFFF" android:textColorHint="#667386" android:backgroundTint="#334155" android:inputType="number" />
+            <Button android:id="@+id/btnRepoAdd" android:layout_width="0dp" android:layout_height="52dp" android:layout_weight="2" android:layout_marginStart="7dp" android:text="AGREGAR / ACTUALIZAR" android:textColor="#55FFD0" android:backgroundTint="#0D2A24" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="8dp">
+            <Button android:id="@+id/btnRepoCheckOne" android:layout_width="0dp" android:layout_height="52dp" android:layout_weight="1" android:text="REVISAR UNO" android:textColor="#FFFFFF" android:backgroundTint="#253044" />
+            <Button android:id="@+id/btnRepoCheck" android:layout_width="0dp" android:layout_height="52dp" android:layout_weight="1" android:layout_marginStart="7dp" android:text="REVISAR TODO" android:textColor="#FFFFFF" android:backgroundTint="#253044" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="8dp">
+            <Button android:id="@+id/btnRepoPause" android:layout_width="0dp" android:layout_height="52dp" android:layout_weight="1" android:text="PAUSAR/ACTIVAR" android:textColor="#FFFFFF" android:backgroundTint="#253044" />
+            <Button android:id="@+id/btnRepoToggle" android:layout_width="0dp" android:layout_height="52dp" android:layout_weight="1" android:layout_marginStart="7dp" android:text="AUTO ON/OFF" android:textColor="#FFFFFF" android:backgroundTint="#253044" />
+            <Button android:id="@+id/btnRepoRemove" android:layout_width="0dp" android:layout_height="52dp" android:layout_weight="1" android:layout_marginStart="7dp" android:text="QUITAR" android:textColor="#FFD7DF" android:backgroundTint="#3A1D24" />
+        </LinearLayout>
+        <TextView android:id="@+id/txtRepoStatus" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="Programado: revisión global aprox. cada 1 h en red no medida; cada repo respeta su propio intervalo." android:textColor="#AAB3C2" android:textSize="12sp" />
+        <TextView android:id="@+id/txtRepoList" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="130dp" android:layout_marginTop="7dp" android:padding="12dp" android:background="#151A22" android:text="Cargando repositorios…" android:textColor="#D5DCE6" android:textIsSelectable="true" android:typeface="monospace" android:textSize="12sp" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:text="Para editar/quitar un repo: pegá su owner/repo en el campo superior. Los repos privados requieren autenticación segura y no están soportados todavía en R9." android:textColor="#E0B37A" android:textSize="11sp" />
+
+
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="28dp" android:text="DESCUBRIR · CATÁLOGOS OSINT" android:textStyle="bold" android:textColor="#55FFD0" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:text="Vigila listas de GitHub como Awesome OSINT y marca repositorios nuevos. No descarga herramientas del catálogo automáticamente." android:textColor="#AAB3C2" android:textSize="13sp" />
+        <EditText android:id="@+id/txtCatalogSource" android:layout_width="match_parent" android:layout_height="52dp" android:layout_marginTop="10dp" android:hint="Astrosp/Awesome-OSINT-List" android:singleLine="true" android:paddingHorizontal="12dp" android:textColor="#FFFFFF" android:textColorHint="#667386" android:backgroundTint="#334155" android:inputType="textUri" />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="8dp">
+            <EditText android:id="@+id/txtCatalogHours" android:layout_width="0dp" android:layout_height="52dp" android:layout_weight="1" android:hint="Horas" android:text="12" android:singleLine="true" android:paddingHorizontal="10dp" android:textColor="#FFFFFF" android:textColorHint="#667386" android:backgroundTint="#334155" android:inputType="number" />
+            <Button android:id="@+id/btnCatalogAdd" android:layout_width="0dp" android:layout_height="52dp" android:layout_weight="2" android:layout_marginStart="7dp" android:text="AGREGAR FUENTE" android:textColor="#55FFD0" android:backgroundTint="#0D2A24" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="8dp">
+            <Button android:id="@+id/btnCatalogCheck" android:layout_width="0dp" android:layout_height="52dp" android:layout_weight="1" android:text="REVISAR CATÁLOGOS" android:textColor="#FFFFFF" android:backgroundTint="#253044" />
+            <Button android:id="@+id/btnCatalogSeen" android:layout_width="0dp" android:layout_height="52dp" android:layout_weight="1" android:layout_marginStart="7dp" android:text="MARCAR VISTOS" android:textColor="#FFFFFF" android:backgroundTint="#253044" />
+        </LinearLayout>
+        <TextView android:id="@+id/txtCatalogStatus" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="Fuente inicial: Astrosp/Awesome-OSINT-List" android:textColor="#AAB3C2" android:textSize="12sp" />
+        <TextView android:id="@+id/txtCatalogSources" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="70dp" android:layout_marginTop="7dp" android:padding="12dp" android:background="#151A22" android:text="Cargando fuentes…" android:textColor="#D5DCE6" android:textIsSelectable="true" android:typeface="monospace" android:textSize="12sp" />
+        <TextView android:id="@+id/txtCatalogTools" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="150dp" android:layout_marginTop="7dp" android:padding="12dp" android:background="#101720" android:text="Todavía no hay recursos." android:textColor="#D5DCE6" android:textIsSelectable="true" android:typeface="monospace" android:textSize="12sp" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:text="Para seguir uno de estos proyectos, copiá owner/repo y agregalo arriba en Actualizaciones. Entra en modo SOLO AVISA si lo agregás desde Desktop." android:textColor="#E0B37A" android:textSize="11sp" />
+
+        <TextView android:id="@+id/txtPermission" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="18dp" android:text="" android:textColor="#E0B37A" android:textSize="13sp" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:layout_marginBottom="24dp" android:text="R9 usa la red Wi‑Fi actual y agrega actualización independiente por repositorio. Las descargas nunca se ejecutan ni instalan solas. El sensing RSSI sigue siendo experimental y debe probarse en una red propia o autorizada." android:textColor="#6F7B8B" android:textSize="12sp" />
+    </LinearLayout>
+</ScrollView>

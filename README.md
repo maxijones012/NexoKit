@@ -15,16 +15,6 @@ R9 trae como fuente inicial:
 
 La primera revisión crea una línea base. En revisiones posteriores, si aparecen links nuevos de GitHub en el README, se marcan como `NUEVO`.
 
-## Herramienta seguida incluida: Meta Scan
-
-También se incorpora `HackUnderway/meta_scan` como repositorio seguido de fábrica.
-
-- categoría: OSINT / Facebook;
-- revisión individual: cada 12 horas;
-- descarga automática: activada;
-- nunca ejecuta ni instala automáticamente lo descargado;
-- una migración de una sola vez lo agrega también a instalaciones R9 que ya tenían su lista de repositorios guardada.
-
 ## Desktop · pestaña Descubrir
 
 - agregar/quitar fuentes catálogo;
@@ -56,6 +46,17 @@ Se mantiene R8:
 
 Se conserva el modo Wi‑Fi directo basado en RSSI de R7, con calibración, actividad RF y HUD futurista. Es experimental y no equivale a una imagen ni a una localización exacta de personas.
 
+## Herramienta agregada: Meta Scan
+
+NexoKit incluye ahora `HackUnderway/meta_scan` entre los repositorios seguidos de fábrica.
+
+- categoría: OSINT / Facebook;
+- revisión individual: cada 12 horas;
+- descarga automática: activada;
+- nunca ejecuta ni instala automáticamente lo descargado;
+- una migración de una sola vez lo agrega también a instalaciones R9 que ya tenían su lista guardada.
+
+
 ## Compilar
 
 Ejecutar `INICIAR.bat`:
@@ -65,7 +66,7 @@ Ejecutar `INICIAR.bat`:
 - `4` Compilar todo
 - `5` Instalar APK por USB
 
-Si ya tenés `.tools` de una versión anterior, el parche puede reutilizarlo.
+Si ya tenés `.tools` de una versión anterior, el parche R8→R9 puede reutilizarlo.
 
 ## Uso responsable
 

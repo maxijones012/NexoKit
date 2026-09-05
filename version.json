@@ -1,6 +1,6 @@
 {
-  "name": "Kit Herramientas",
-  "revision": "R7",
-  "desktop": "0.7.0",
-  "android": "0.7.0"
+  "name": "NexoKit",
+  "revision": "R9",
+  "desktop": "0.9.0",
+  "android": "0.9.0"
 }
