@@ -1,61 +1,101 @@
-# NexoKit R9 — Descubrir + Actualizaciones
+# NexoKit R10 — Herramientas integradas
 
-Versiones: **Desktop 0.9.0 / Android 0.9.0 / R9**.
+Versiones: **Desktop 1.0.0 / Android 1.0.0 / R10**.
 
-R9 agrega una capa nueva sobre el gestor de repositorios: **Descubrir**. La idea es separar claramente dos cosas:
+R10 cambia el concepto central de NexoKit: los repositorios ya no sirven solamente para vigilar actualizaciones. Los proyectos compatibles pueden convertirse en **herramientas usables desde la propia aplicación**.
 
-- **Actualizaciones**: proyectos concretos que ya elegiste seguir. Cada repo tiene su intervalo y puede descargar una release/ZIP nuevo.
-- **Descubrir**: repositorios-catálogo (por ejemplo listas OSINT) que se revisan periódicamente para detectar herramientas/repo nuevos, sin descargarlos automáticamente.
+La estructura queda separada en tres capas:
 
-## Fuente incluida
+- **🧰 Herramientas**: usar módulos integrados directamente desde NexoKit.
+- **🔄 Actualizaciones**: vigilar cada repositorio por separado y descargar nuevas versiones.
+- **🔎 Descubrir**: revisar repositorios-catálogo para encontrar nuevas herramientas.
 
-R9 trae como fuente inicial:
+## 🧰 Herramientas integradas
+
+### Meta Scan · Facebook OSINT
+
+NexoKit integra las funciones principales de `HackUnderway/meta_scan` en una interfaz propia.
+
+En Desktop y Android se puede:
+
+- ingresar usuario o URL de Facebook;
+- ingresar una API key propia de RapidAPI;
+- consultar perfil;
+- consultar Business Home;
+- consultar About;
+- consultar Transparencia;
+- visualizar un resumen de datos y JSON crudo;
+- en Desktop, copiar y exportar resultados a TXT/JSON.
+
+La clave de RapidAPI **no se guarda en NexoKit**: permanece sólo durante la sesión de la interfaz.
+
+Repositorio de referencia: `HackUnderway/meta_scan` (MIT).
+
+### OSINT Hub
+
+El catálogo de `Descubrir` pasa a ser navegable como una herramienta real.
+
+- buscador por repositorio, categoría o fuente;
+- actualización manual de los catálogos;
+- abrir una herramienta en GitHub;
+- agregar una herramienta seleccionada a `Actualizaciones`;
+- las herramientas agregadas desde el Hub entran como **SOLO AVISA** por defecto.
+
+Fuente inicial:
 
 `Astrosp/Awesome-OSINT-List`
 
-La primera revisión crea una línea base. En revisiones posteriores, si aparecen links nuevos de GitHub en el README, se marcan como `NUEVO`.
+El catálogo no descarga ni ejecuta automáticamente todos sus recursos.
 
-## Desktop · pestaña Descubrir
+### Wi‑Fi Sensing
 
-- agregar/quitar fuentes catálogo;
-- intervalo independiente por fuente;
-- revisión manual o automática;
-- cantidad total de recursos y cantidad nueva;
-- categoría tomada del encabezado del README;
-- abrir el repositorio descubierto en GitHub;
-- mandar un recurso a `Actualizaciones`;
-- al agregar desde Descubrir entra en **SOLO AVISA** por seguridad;
-- `MARCAR VISTOS` limpia la bandera de novedades sin borrar el historial.
+El módulo router + teléfono/PC sigue integrado en NexoKit y puede abrirse desde el centro de Herramientas.
 
-## Android · Descubrir
+- RSSI y señal Wi‑Fi;
+- calibración del ambiente;
+- actividad RF experimental;
+- HUD de sensing;
+- CSI/RuView queda como referencia avanzada para hardware compatible.
 
-Android incluye la misma fuente inicial y revisa catálogos junto con el trabajo programado de repositorios. La app muestra hasta 80 recursos por pantalla, priorizando los nuevos.
+El sensing mediante RSSI es experimental y no equivale a una imagen ni determina una ubicación exacta de una persona.
 
-El catálogo nunca instala ni ejecuta herramientas. Para seguir un proyecto concreto, se agrega a `Actualizaciones`.
+## Desktop R10
+
+La aplicación agrega automáticamente una pestaña **🧰 Herramientas** al iniciar, sin eliminar las pestañas existentes.
+
+Dentro de esa pestaña hay módulos para:
+
+- Meta Scan;
+- OSINT Hub;
+- Wi‑Fi Sensing.
+
+El encabezado de la aplicación se actualiza a NexoKit Desktop 1.0.0 · R10.
+
+## Android R10
+
+Android incorpora un acceso **🧰 Herramientas** desde la pantalla principal que abre el centro integrado.
+
+El centro Android incluye:
+
+- Meta Scan directamente desde el teléfono;
+- catálogo OSINT filtrable;
+- actualización de catálogos;
+- abrir repositorios;
+- mandar herramientas a Actualizaciones en modo SOLO AVISA;
+- acceso al módulo Wi‑Fi Sensing.
 
 ## Actualizaciones de repositorios
 
-Se mantiene R8:
+Se conserva el sistema independiente por repositorio:
 
-- cada repo tiene su propio intervalo;
-- detecta GitHub Releases o, si no existen, el último commit de la rama principal;
-- descarga el asset adecuado o un ZIP de código;
+- intervalo propio;
+- GitHub Releases o último commit de la rama principal;
+- descarga de asset compatible o ZIP de código;
 - **nunca ejecuta ni instala automáticamente** lo descargado.
 
-## Wi‑Fi Sensing
+## Descubrir
 
-Se conserva el modo Wi‑Fi directo basado en RSSI de R7, con calibración, actividad RF y HUD futurista. Es experimental y no equivale a una imagen ni a una localización exacta de personas.
-
-## Herramienta agregada: Meta Scan
-
-NexoKit incluye ahora `HackUnderway/meta_scan` entre los repositorios seguidos de fábrica.
-
-- categoría: OSINT / Facebook;
-- revisión individual: cada 12 horas;
-- descarga automática: activada;
-- nunca ejecuta ni instala automáticamente lo descargado;
-- una migración de una sola vez lo agrega también a instalaciones R9 que ya tenían su lista guardada.
-
+Se mantiene la detección de herramientas nuevas en repositorios-catálogo. La primera revisión genera una línea base y las revisiones siguientes marcan únicamente altas nuevas.
 
 ## Compilar
 
@@ -66,8 +106,8 @@ Ejecutar `INICIAR.bat`:
 - `4` Compilar todo
 - `5` Instalar APK por USB
 
-Si ya tenés `.tools` de una versión anterior, el parche R8→R9 puede reutilizarlo.
+GitHub Actions genera además los artifacts y el Release de R10.
 
 ## Uso responsable
 
-Las funciones OSINT, de red y sensing deben utilizarse únicamente con fines legales y sobre sistemas, redes, cuentas o ambientes propios o autorizados. Un catálogo puede enlazar proyectos de terceros: NexoKit no garantiza su seguridad ni los ejecuta automáticamente.
+Las funciones OSINT, de red y sensing deben utilizarse únicamente con fines legales y sobre sistemas, redes, cuentas o ambientes propios o autorizados. Los catálogos pueden enlazar proyectos de terceros: NexoKit no garantiza su seguridad y no los ejecuta automáticamente.
